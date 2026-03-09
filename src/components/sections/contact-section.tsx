@@ -1,7 +1,7 @@
-import { Mail, MapPin } from "lucide-react"
 import { useReveal } from "@/hooks/use-reveal"
 import { useState, type FormEvent } from "react"
 import { MagneticButton } from "@/components/magnetic-button"
+import Icon from "@/components/ui/icon"
 
 export function ContactSection() {
   const { ref, isVisible } = useReveal(0.3)
@@ -12,21 +12,15 @@ export function ContactSection() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       return
     }
 
     setIsSubmitting(true)
-
-    // Simulate form submission (replace with actual API call later)
     await new Promise((resolve) => setTimeout(resolve, 1500))
-
     setIsSubmitting(false)
     setSubmitSuccess(true)
     setFormData({ name: "", email: "", message: "" })
-
-    // Reset success message after 5 seconds
     setTimeout(() => setSubmitSuccess(false), 5000)
   }
 
@@ -44,64 +38,52 @@ export function ContactSection() {
               }`}
             >
               <h2 className="mb-2 font-sans text-4xl font-light leading-[1.05] tracking-tight text-foreground md:mb-3 md:text-7xl lg:text-8xl">
-                Давайте
-                <br />
-                поговорим
+                Заключение
               </h2>
-              <p className="font-mono text-xs text-foreground/60 md:text-base">/ Свяжитесь с нами</p>
+              <p className="font-mono text-xs text-foreground/60 md:text-base">/ Твоя формула успеха</p>
             </div>
 
-            <div className="space-y-4 md:space-y-8">
-              <a
-                href="mailto:info@flowrise.dev"
-                className={`group block transition-all duration-700 ${
-                  isVisible ? "translate-x-0 opacity-100" : "-translate-x-16 opacity-0"
-                }`}
-                style={{ transitionDelay: "200ms" }}
-              >
-                <div className="mb-1 flex items-center gap-2">
-                  <Mail className="h-3 w-3 text-foreground/60" />
-                  <span className="font-mono text-xs text-foreground/60">Email</span>
+            <div className="space-y-4 md:space-y-6">
+              {[
+                { icon: "Heart", text: "Здоровье — это марафон, а не спринт" },
+                { icon: "TrendingUp", text: "Внедряйте 1 привычку в неделю" },
+                { icon: "Smile", text: "Здоровый человек — самый счастливый человек!" },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className={`group flex items-center gap-4 transition-all duration-700 ${
+                    isVisible ? "translate-x-0 opacity-100" : "-translate-x-16 opacity-0"
+                  }`}
+                  style={{ transitionDelay: `${200 + i * 150}ms` }}
+                >
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-foreground/10">
+                    <Icon name={item.icon} size={16} className="text-foreground/70" />
+                  </div>
+                  <p className="text-base text-foreground md:text-xl">{item.text}</p>
                 </div>
-                <p className="text-base text-foreground transition-colors group-hover:text-foreground/70 md:text-2xl">
-                  info@flowrise.dev
+              ))}
+
+              <div
+                className={`pt-2 transition-all duration-700 ${
+                  isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                }`}
+                style={{ transitionDelay: "650ms" }}
+              >
+                <p className="max-w-sm font-mono text-xs leading-relaxed text-foreground/60 md:text-sm">
+                  Вывод: Главное — любовь к себе и своему телу. Начать никогда не поздно.
                 </p>
-              </a>
-
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-                }`}
-                style={{ transitionDelay: "350ms" }}
-              >
-                <div className="mb-1 flex items-center gap-2">
-                  <MapPin className="h-3 w-3 text-foreground/60" />
-                  <span className="font-mono text-xs text-foreground/60">Локация</span>
-                </div>
-                <p className="text-base text-foreground md:text-2xl">Москва, Россия</p>
-              </div>
-
-              <div
-                className={`flex gap-2 pt-2 transition-all duration-700 md:pt-4 ${
-                  isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"
-                }`}
-                style={{ transitionDelay: "500ms" }}
-              >
-                {["Telegram", "VK", "LinkedIn", "GitHub"].map((social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="border-b border-transparent font-mono text-xs text-foreground/60 transition-all hover:border-foreground/60 hover:text-foreground/90"
-                  >
-                    {social}
-                  </a>
-                ))}
               </div>
             </div>
           </div>
 
-          {/* Right side - Minimal form */}
           <div className="flex flex-col justify-center">
+            <div
+              className={`mb-6 transition-all duration-700 ${
+                isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"
+              }`}
+            >
+              <p className="font-mono text-xs text-foreground/60 md:text-sm">/ Связаться с автором</p>
+            </div>
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               <div
                 className={`transition-all duration-700 ${
@@ -143,14 +125,14 @@ export function ContactSection() {
                 }`}
                 style={{ transitionDelay: "500ms" }}
               >
-                <label className="mb-1 block font-mono text-xs text-foreground/60 md:mb-2">Сообщение</label>
+                <label className="mb-1 block font-mono text-xs text-foreground/60 md:mb-2">Вопрос или отзыв</label>
                 <textarea
                   rows={3}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
                   className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/40 focus:border-foreground/50 focus:outline-none md:py-2 md:text-base"
-                  placeholder="Расскажите о вашем проекте..."
+                  placeholder="Ваш вопрос по теме ЗОЖ..."
                 />
               </div>
 

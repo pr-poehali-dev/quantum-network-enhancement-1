@@ -15,31 +15,31 @@ export function ServicesSection() {
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Услуги
+            Мифы о ЗОЖ
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Наши компетенции</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Разбираем заблуждения</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
           {[
             {
-              title: "Веб-разработка",
-              description: "Создание современных веб-приложений любой сложности",
+              title: "ЗОЖ — это дорого",
+              description: "Бесплатная пробежка и домашняя еда полезнее дорогих БАДов и спортзала.",
               direction: "top",
             },
             {
-              title: "UI/UX Дизайн",
-              description: "Проектирование удобных и красивых интерфейсов",
+              title: "2 литра воды — для всех",
+              description: "Норма индивидуальна: 30 мл на 1 кг веса. При болезнях почек — только по назначению врача.",
               direction: "right",
             },
             {
-              title: "Мобильные приложения",
-              description: "Кроссплатформенная разработка для iOS и Android",
+              title: "После 40 — поздно начинать",
+              description: "Начать никогда не поздно. Даже небольшие изменения в любом возрасте улучшают качество жизни.",
               direction: "left",
             },
             {
-              title: "Консалтинг",
-              description: "Техническая экспертиза и стратегическое планирование",
+              title: "ЗОЖ — это временная диета",
+              description: "ЗОЖ — это стиль жизни навсегда, а не краткосрочное ограничение. Постепенность — ключ к успеху.",
               direction: "bottom",
             },
           ].map((service, i) => (
@@ -87,7 +87,7 @@ function ServiceCard({
     >
       <div className="mb-3 flex items-center gap-3">
         <div className="h-px w-8 bg-foreground/30 transition-all duration-300 group-hover:w-12 group-hover:bg-foreground/50" />
-        <span className="font-mono text-xs text-foreground/60">0{index + 1}</span>
+        <span className="font-mono text-xs text-foreground/60">МИФ 0{index + 1}</span>
       </div>
       <h3 className="mb-2 font-sans text-2xl font-light text-foreground md:text-3xl">{service.title}</h3>
       <p className="max-w-sm text-sm leading-relaxed text-foreground/80 md:text-base">{service.description}</p>
